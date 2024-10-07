@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .input-box {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #queueNumber {
+            font-size: 24px;
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Help Page</h1>
+
+        <div id="form-section">
+            <div class="input-box">
+                <label for="input1">Full name:</label>
+                <input type="text" id="input1" placeholder="Enter some text">
+            </div>
+            <div class="input-box">
+                <label for="input2">Best contact:</label>
+                <input type="text" id="input2" placeholder="Enter some text">
+            </div>
+            <div class="input-box">
+                <label for="input3">Main complaint:</label>
+                <input type="text" id="input3" placeholder="Enter some text">
+            </div>
+            <button onclick="submitForm()">Submit</button>
+        </div>
+
+        <div id="queue-section" class="hidden">
+            <h2>Thank you for your submission!</h2>
+            <p>Your current place in line is:</p>
+            <div id="queueNumber">12,345</div>
+        </div>
+
+    </div>
+
+    <!-- Confetti JS library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <script>
+        function submitForm() {
+            // Trigger confetti
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            // Hide the form section
+            document.getElementById('form-section').classList.add('hidden');
+
+            // Show the queue section
+            document.getElementById('queue-section').classList.remove('hidden');
+
+            // Set a random place in line between 10,000 and 20,000
+            const queueNumber = Math.floor(Math.random() * 10000) + 10000;
+            document.getElementById('queueNumber').textContent = queueNumber;
+        }
+    </script>
+
+</body>
+</html>
